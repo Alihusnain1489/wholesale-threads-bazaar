@@ -1,6 +1,7 @@
 
 import { ShoppingBag, Menu, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Header = ({ cartItemsCount, onCartClick }) => {
   return (
@@ -9,15 +10,29 @@ const Header = ({ cartItemsCount, onCartClick }) => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-emerald-700">Abid Bhai Store</h1>
+            <Link to="/">
+              <h1 className="text-2xl font-bold text-emerald-700 hover:text-emerald-800 transition-colors">
+                Abid Bhai Store
+              </h1>
+            </Link>
           </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
+<<<<<<< HEAD
             <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Collections</a>
             <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Lawn</a>
             <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Cambric</a>
             <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Silk</a>
+=======
+            <Link to="/collections" className="text-gray-700 hover:text-emerald-700 font-medium transition-colors">
+              Collections
+            </Link>
+            <a href="#lawn" className="text-gray-700 hover:text-emerald-700 font-medium">Lawn</a>
+            <a href="#chiffon" className="text-gray-700 hover:text-emerald-700 font-medium">Chiffon</a>
+            <a href="#cotton" className="text-gray-700 hover:text-emerald-700 font-medium">Cotton</a>
+            <a href="#silk" className="text-gray-700 hover:text-emerald-700 font-medium">Silk</a>
+>>>>>>> eb28fbf78c5107f238755d6fd85e7c8f29573abe
           </nav>
 
           {/* Right side */}
