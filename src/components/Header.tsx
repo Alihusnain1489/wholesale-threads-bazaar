@@ -16,8 +16,7 @@ const Header = ({ cartItemsCount, onCartClick }) => {
           <nav className="hidden md:flex space-x-8">
             <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Collections</a>
             <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Lawn</a>
-            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Chiffon</a>
-            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Cotton</a>
+            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Cambric</a>
             <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Silk</a>
           </nav>
 
