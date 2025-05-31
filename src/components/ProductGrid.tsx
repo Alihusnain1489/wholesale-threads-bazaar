@@ -10,68 +10,68 @@ const ProductGrid = ({ onAddToCart }) => {
   const products = [
     {
       id: 1,
-      name: "Premium Lawn Collection",
+      name: "Premium Pakistani Lawn",
       category: "lawn",
       price: 850,
       originalPrice: 1200,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=300&fit=crop",
       colors: ["Blue", "Pink", "Green"],
-      description: "Soft, breathable lawn fabric perfect for summer wear",
+      description: "Soft, breathable Pakistani lawn fabric perfect for summer wear",
       minOrder: 50
     },
     {
       id: 2,
-      name: "Elegant Chiffon Set",
+      name: "Elegant Pakistani Chiffon",
       category: "chiffon",
       price: 1450,
       originalPrice: 1800,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=300&fit=crop",
       colors: ["Black", "Navy", "Maroon"],
-      description: "Luxurious chiffon with intricate embroidery",
+      description: "Luxurious Pakistani chiffon with intricate embroidery",
       minOrder: 30
     },
     {
       id: 3,
-      name: "Pure Cotton Comfort",
+      name: "Pure Pakistani Cotton",
       category: "cotton",
       price: 750,
       originalPrice: 950,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=300&fit=crop",
       colors: ["White", "Cream", "Beige"],
-      description: "100% pure cotton, perfect for everyday wear",
+      description: "100% pure Pakistani cotton, perfect for everyday wear",
       minOrder: 60
     },
     {
       id: 4,
-      name: "Silk Sensation",
+      name: "Pakistani Silk Collection",
       category: "silk",
       price: 2200,
       originalPrice: 2800,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=300&fit=crop",
       colors: ["Gold", "Silver", "Purple"],
-      description: "Premium silk fabric with golden threads",
+      description: "Premium Pakistani silk fabric with golden threads",
       minOrder: 25
     },
     {
       id: 5,
-      name: "Printed Lawn Delight",
+      name: "Printed Pakistani Lawn",
       category: "lawn",
       price: 920,
       originalPrice: 1150,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1542272454315-7ad9ed67e614?w=400&h=300&fit=crop",
       colors: ["Floral", "Geometric", "Abstract"],
-      description: "Vibrant printed lawn collection",
+      description: "Vibrant printed Pakistani lawn collection",
       minOrder: 45
     },
     {
       id: 6,
-      name: "Luxury Chiffon Elite",
+      name: "Luxury Pakistani Chiffon",
       category: "chiffon",
       price: 1650,
       originalPrice: 2100,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1571513722275-4b8c3ba3dbb5?w=400&h=300&fit=crop",
       colors: ["Rose Gold", "Champagne", "Pearl"],
-      description: "Premium chiffon with pearl work",
+      description: "Premium Pakistani chiffon with pearl work",
       minOrder: 20
     }
   ];
@@ -96,9 +96,9 @@ const ProductGrid = ({ onAddToCart }) => {
     <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">Wholesale Collection</h2>
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">Pakistani Wholesale Collection</h2>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Discover our premium unstitched fabric collection at unbeatable wholesale prices
+          Discover our authentic Pakistani fabric collection at unbeatable wholesale prices
         </p>
       </div>
 
@@ -109,7 +109,7 @@ const ProductGrid = ({ onAddToCart }) => {
             key={category.id}
             variant={selectedCategory === category.id ? "default" : "outline"}
             onClick={() => setSelectedCategory(category.id)}
-            className={selectedCategory === category.id ? "bg-purple-600 hover:bg-purple-700" : ""}
+            className={selectedCategory === category.id ? "bg-emerald-600 hover:bg-emerald-700" : ""}
           >
             {category.name}
           </Button>
@@ -119,7 +119,7 @@ const ProductGrid = ({ onAddToCart }) => {
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredProducts.map((product) => (
-          <div key={product.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div key={product.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-emerald-100">
             {/* Product Image */}
             <div className="relative h-64 bg-gray-200">
               <img 
@@ -155,13 +155,13 @@ const ProductGrid = ({ onAddToCart }) => {
 
               {/* Pricing */}
               <div className="flex items-center space-x-2 mb-4">
-                <span className="text-2xl font-bold text-purple-600">₹{product.price}</span>
+                <span className="text-2xl font-bold text-emerald-600">₹{product.price}</span>
                 <span className="text-lg text-gray-400 line-through">₹{product.originalPrice}</span>
               </div>
 
               {/* Minimum Order */}
               <div className="mb-4">
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-xs border-emerald-200 text-emerald-700">
                   Min Order: {product.minOrder} pieces
                 </Badge>
               </div>
@@ -169,7 +169,7 @@ const ProductGrid = ({ onAddToCart }) => {
               {/* Add to Cart Button */}
               <Button 
                 onClick={() => onAddToCart(product)}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
               >
                 <ShoppingCart className="h-4 w-4 mr-2" />
                 Add to Cart

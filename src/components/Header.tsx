@@ -4,21 +4,21 @@ import { Button } from '@/components/ui/button';
 
 const Header = ({ cartItemsCount, onCartClick }) => {
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-white shadow-sm sticky top-0 z-50 border-b-2 border-emerald-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-purple-800">FabricWholesale</h1>
+            <h1 className="text-2xl font-bold text-emerald-700">Abid Bhai Store</h1>
           </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <a href="#" className="text-gray-700 hover:text-purple-800 font-medium">Collections</a>
-            <a href="#" className="text-gray-700 hover:text-purple-800 font-medium">Lawn</a>
-            <a href="#" className="text-gray-700 hover:text-purple-800 font-medium">Chiffon</a>
-            <a href="#" className="text-gray-700 hover:text-purple-800 font-medium">Cotton</a>
-            <a href="#" className="text-gray-700 hover:text-purple-800 font-medium">Silk</a>
+            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Collections</a>
+            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Lawn</a>
+            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Chiffon</a>
+            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Cotton</a>
+            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Silk</a>
           </nav>
 
           {/* Right side */}
@@ -35,7 +35,7 @@ const Header = ({ cartItemsCount, onCartClick }) => {
             >
               <ShoppingBag className="h-5 w-5" />
               {cartItemsCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {cartItemsCount}
                 </span>
               )}
