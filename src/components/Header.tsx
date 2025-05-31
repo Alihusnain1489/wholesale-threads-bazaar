@@ -8,32 +8,24 @@ const Header = ({ cartItemsCount, onCartClick }) => {
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b-2 border-emerald-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link to="/">
+          {/* Left spacer for mobile menu */}
+          <div className="flex items-center md:hidden">
+            <Button variant="ghost" size="sm">
+              <Menu className="h-5 w-5" />
+            </Button>
+          </div>
+
+          {/* Centered Logo */}
+          <div className="flex items-center justify-center flex-1">
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-lg">AB</span>
+              </div>
               <h1 className="text-2xl font-bold text-emerald-700 hover:text-emerald-800 transition-colors">
                 Abid Bhai Store
               </h1>
             </Link>
           </div>
-
-          {/* Navigation */}
-          <nav className="hidden md:flex space-x-8">
-<<<<<<< HEAD
-            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Collections</a>
-            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Lawn</a>
-            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Cambric</a>
-            <a href="#" className="text-gray-700 hover:text-emerald-700 font-medium">Silk</a>
-=======
-            <Link to="/collections" className="text-gray-700 hover:text-emerald-700 font-medium transition-colors">
-              Collections
-            </Link>
-            <a href="#lawn" className="text-gray-700 hover:text-emerald-700 font-medium">Lawn</a>
-            <a href="#chiffon" className="text-gray-700 hover:text-emerald-700 font-medium">Chiffon</a>
-            <a href="#cotton" className="text-gray-700 hover:text-emerald-700 font-medium">Cotton</a>
-            <a href="#silk" className="text-gray-700 hover:text-emerald-700 font-medium">Silk</a>
->>>>>>> eb28fbf78c5107f238755d6fd85e7c8f29573abe
-          </nav>
 
           {/* Right side */}
           <div className="flex items-center space-x-4">
@@ -53,10 +45,6 @@ const Header = ({ cartItemsCount, onCartClick }) => {
                   {cartItemsCount}
                 </span>
               )}
-            </Button>
-
-            <Button variant="ghost" size="sm" className="md:hidden">
-              <Menu className="h-5 w-5" />
             </Button>
           </div>
         </div>
