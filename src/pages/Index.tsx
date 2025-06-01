@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Header from '../components/Header';
 import CategorySection from '../components/CategorySection';
@@ -53,7 +54,12 @@ const Index = () => {
         onCartClick={() => setIsCartOpen(true)}
       />
       <CategorySection />
-      <ProductGrid onAddToCart={addToCart} />
+      <ProductGrid 
+        onAddToCart={addToCart} 
+        category={null}
+        filter={null}
+        searchQuery={null}
+      />
       <Footer />
       
       <Cart
