@@ -1,5 +1,5 @@
 
-import { ShoppingBag, Menu, Search, User, Heart, ChevronDown } from 'lucide-react';
+import { ShoppingBag, Menu, Search, User, Heart, ChevronDown, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -16,10 +16,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const Header = ({ cartItemsCount, onCartClick }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -28,6 +37,7 @@ const Header = ({ cartItemsCount, onCartClick }) => {
       navigate(`/collections?search=${encodeURIComponent(searchQuery)}`);
       setIsSearchOpen(false);
       setSearchQuery('');
+      setIsMobileMenuOpen(false);
     }
   };
 
@@ -48,19 +58,19 @@ const Header = ({ cartItemsCount, onCartClick }) => {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      {/* Top Navigation Bar */}
-      <div className="bg-gray-50 border-b border-gray-200">
+      {/* Top Navigation Bar - Hidden on mobile */}
+      <div className="bg-gray-50 border-b border-gray-200 hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-10 text-sm">
             <div className="flex items-center space-x-6">
               <a href="tel:+92300000000" className="text-gray-600 hover:text-green-600 transition-colors">
                 📞 Customer Service
               </a>
-              <span className="hidden md:inline text-gray-600">📍 Track Order</span>
+              <span className="hidden lg:inline text-gray-600">📍 Track Order</span>
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-gray-600">🚚 Free Delivery on Rs3000+</span>
-              <span className="hidden md:inline text-gray-600">💰 Best Wholesale Rates</span>
+              <span className="hidden lg:inline text-gray-600">💰 Best Wholesale Rates</span>
             </div>
           </div>
         </div>
@@ -70,7 +80,85 @@ const Header = ({ cartItemsCount, onCartClick }) => {
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Left Navigation */}
+            {/* Mobile Menu Button */}
+            <div className="lg:hidden">
+              <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="sm">
+                    <Menu className="h-6 w-6" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                  <SheetHeader>
+                    <SheetTitle>Menu</SheetTitle>
+                    <SheetDescription>Browse our collections</SheetDescription>
+                  </SheetHeader>
+                  <div className="grid gap-4 py-4">
+                    {/* Mobile Search */}
+                    <form onSubmit={handleSearch} className="flex items-center space-x-2">
+                      <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search fabrics..."
+                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                      />
+                      <Button type="submit" size="sm">
+                        <Search className="h-4 w-4" />
+                      </Button>
+                    </form>
+                    
+                    {/* Lookbook Categories */}
+                    <div className="space-y-2">
+                      <h3 className="font-semibold text-lg">Lookbook</h3>
+                      {lookbookCategories.map((category) => (
+                        <Link
+                          key={category.name}
+                          to={category.href}
+                          className="block py-2 text-gray-700 hover:text-green-600 transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {category.name}
+                        </Link>
+                      ))}
+                    </div>
+
+                    {/* Fabric Types */}
+                    <div className="space-y-2">
+                      <h3 className="font-semibold text-lg">Store</h3>
+                      {fabricTypes.map((fabric) => (
+                        <Link
+                          key={fabric.name}
+                          to={fabric.href}
+                          className="block py-2 text-gray-700 hover:text-green-600 transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {fabric.name}
+                        </Link>
+                      ))}
+                    </div>
+
+                    {/* Account Options */}
+                    <div className="space-y-2">
+                      <h3 className="font-semibold text-lg">Account</h3>
+                      <div className="space-y-2">
+                        <button className="block w-full text-left py-2 text-gray-700 hover:text-green-600 transition-colors">
+                          Sign In
+                        </button>
+                        <button className="block w-full text-left py-2 text-gray-700 hover:text-green-600 transition-colors">
+                          Create Account
+                        </button>
+                        <button className="block w-full text-left py-2 text-gray-700 hover:text-green-600 transition-colors">
+                          My Orders
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+
+            {/* Left Navigation - Desktop only */}
             <nav className="hidden lg:flex items-center space-x-8">
               <NavigationMenu>
                 <NavigationMenuList>
@@ -109,22 +197,25 @@ const Header = ({ cartItemsCount, onCartClick }) => {
               </DropdownMenu>
             </nav>
 
-            {/* Logo */}
-            <div className="flex items-center">
+            {/* Logo - Responsive */}
+            <div className="flex items-center flex-1 lg:flex-none justify-center lg:justify-start">
               <Link to="/">
                 <div className="flex items-center space-x-2">
                   <div className="w-8 h-8 bg-green-500 rounded text-white flex items-center justify-center font-bold">
                     AB
                   </div>
-                  <span className="text-2xl font-bold text-green-600">Abid Bhai Store</span>
+                  <span className="text-xl sm:text-2xl font-bold text-green-600">
+                    <span className="hidden sm:inline">Abid Bhai Store</span>
+                    <span className="sm:hidden">AB Store</span>
+                  </span>
                 </div>
               </Link>
             </div>
 
-            {/* Right side */}
-            <div className="flex items-center space-x-4">
-              {/* Search */}
-              <div className="relative">
+            {/* Right side - Responsive */}
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              {/* Search - Desktop */}
+              <div className="relative hidden md:block">
                 {isSearchOpen ? (
                   <form onSubmit={handleSearch} className="flex items-center">
                     <input
@@ -143,8 +234,7 @@ const Header = ({ cartItemsCount, onCartClick }) => {
                 ) : (
                   <Button 
                     variant="ghost" 
-                    size="sm" 
-                    className="hidden md:flex"
+                    size="sm"
                     onClick={() => setIsSearchOpen(true)}
                   >
                     <Search className="h-5 w-5" />
@@ -152,13 +242,15 @@ const Header = ({ cartItemsCount, onCartClick }) => {
                 )}
               </div>
               
-              <Button variant="ghost" size="sm" title="Wishlist">
+              {/* Wishlist - Hidden on small mobile */}
+              <Button variant="ghost" size="sm" title="Wishlist" className="hidden sm:flex">
                 <Heart className="h-5 w-5" />
               </Button>
 
+              {/* Account - Desktop only */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" title="Account">
+                  <Button variant="ghost" size="sm" title="Account" className="hidden md:flex">
                     <User className="h-5 w-5" />
                   </Button>
                 </DropdownMenuTrigger>
@@ -170,6 +262,7 @@ const Header = ({ cartItemsCount, onCartClick }) => {
                 </DropdownMenuContent>
               </DropdownMenu>
               
+              {/* Cart */}
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -185,68 +278,50 @@ const Header = ({ cartItemsCount, onCartClick }) => {
                 )}
               </Button>
 
+              {/* Currency - Hidden on mobile */}
               <span className="hidden md:inline text-sm font-medium">PKR</span>
-
-              {/* Mobile Menu */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="md:hidden">
-                    <Menu className="h-5 w-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
-                  <DropdownMenuItem asChild>
-                    <Link to="/collections">All Collections</Link>
-                  </DropdownMenuItem>
-                  {fabricTypes.map((fabric) => (
-                    <DropdownMenuItem key={fabric.name} asChild>
-                      <Link to={fabric.href}>{fabric.name}</Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Secondary Navigation */}
+      {/* Secondary Navigation - Responsive */}
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center justify-center space-x-8 h-12 overflow-x-auto">
+          <nav className="flex items-center justify-center space-x-4 sm:space-x-8 h-12 overflow-x-auto">
             <Link 
               to="/collections?filter=sale" 
-              className="text-red-600 font-medium whitespace-nowrap hover:text-red-700 transition-colors"
+              className="text-red-600 font-medium whitespace-nowrap hover:text-red-700 transition-colors text-sm sm:text-base"
             >
               Great Summer Sale
             </Link>
             <Link 
               to="/collections?filter=new" 
-              className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600 transition-colors"
+              className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600 transition-colors text-sm sm:text-base"
             >
               New Arrivals
             </Link>
             <Link 
               to="/collections?category=lawn" 
-              className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600 transition-colors"
+              className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600 transition-colors text-sm sm:text-base"
             >
               Lawn
             </Link>
             <Link 
               to="/collections?category=chiffon" 
-              className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600 transition-colors"
+              className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600 transition-colors text-sm sm:text-base"
             >
               Chiffon
             </Link>
             <Link 
               to="/collections?category=cambric" 
-              className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600 transition-colors"
+              className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600 transition-colors text-sm sm:text-base hidden sm:block"
             >
               Cambric
             </Link>
             <Link 
               to="/collections?category=silk" 
-              className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600 transition-colors"
+              className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600 transition-colors text-sm sm:text-base hidden sm:block"
             >
               Silk
             </Link>
