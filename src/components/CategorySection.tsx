@@ -5,38 +5,38 @@ const CategorySection = () => {
   const categories = [
     {
       id: 1,
-      name: "CHIKANKARI",
-      image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=300&fit=crop",
+      name: "CAMBRIC",
+      image: "cambridge1.jpg",
       description: "Traditional embroidered unstitched suits"
     },
     {
       id: 2,
-      name: "CHUNRI",
-      image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=300&fit=crop",
-      description: "Vibrant chunri pattern collections"
+      name: "LAWN",
+      image: "Lawn11.jpg",
+      description: "Vibrant lawn chiffon pattern collections"
     },
     {
       id: 3,
-      name: "DHOOP KINABAY",
-      image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=300&fit=crop",
+      name: "Silk",
+      image: "silk11.webp",
       description: "Elegant floral unstitched fabrics"
     },
     {
       id: 4,
-      name: "THE FLORAL WORLD",
-      image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=300&fit=crop",
+      name: "Chiffon",
+      image: "chiphone22.jpeg",
       description: "Beautiful floral print collections"
     },
     {
       id: 5,
-      name: "TRIBUTE TO MOTHERS",
-      image: "https://images.unsplash.com/photo-1542272454315-7ad9ed67e614?w=400&h=300&fit=crop",
+      name: "Cambric",
+      image: "Chiphone33.webp",
       description: "Special mother's day collection"
     },
     {
       id: 6,
       name: "PREMIUM LUXURY",
-      image: "https://images.unsplash.com/photo-1571513722275-4b8c3ba3dbb5?w=400&h=300&fit=crop",
+      image: "chiphone11.webp",
       description: "Luxury unstitched fabric range"
     }
   ];

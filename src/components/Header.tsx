@@ -77,7 +77,7 @@ const Header = ({ cartItemsCount, onCartClick }) => {
                 )}
               </Button>
 
-              <span className="hidden md:inline text-sm font-medium">₹ PKR</span>
+              <span className="hidden md:inline text-sm font-medium"> PKR</span>
 
               <Button variant="ghost" size="sm" className="md:hidden">
                 <Menu className="h-5 w-5" />
@@ -94,14 +94,8 @@ const Header = ({ cartItemsCount, onCartClick }) => {
             <a href="#summer-sale" className="text-red-600 font-medium whitespace-nowrap hover:text-red-700">
               Great Summer Sale
             </a>
-            <a href="#eid-edit" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
-              Eid Edit
-            </a>
             <a href="#new-arrivals" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
               New Arrivals
-            </a>
-            <a href="#women" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
-              Women
             </a>
             <a href="#lawn" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
               Lawn
@@ -110,13 +104,10 @@ const Header = ({ cartItemsCount, onCartClick }) => {
               Chiffon
             </a>
             <a href="#cotton" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
-              Cotton
+              Cambrige
             </a>
             <a href="#silk" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
               Silk
-            </a>
-            <a href="#fragrances" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
-              Fragrances
             </a>
           </nav>
         </div>

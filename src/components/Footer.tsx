@@ -50,7 +50,7 @@ const Footer = () => {
             <div className="space-y-3 text-emerald-100">
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-yellow-300" />
-                <span>+92 300 1234567</span>
+                <span>+92 341 4074900</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-yellow-300" />
@@ -58,7 +58,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 text-yellow-300" />
-                <span>Karachi, Pakistan</span>
+                <span>Lahore, Pakistan</span>
               </div>
             </div>
             <div className="mt-4 p-3 bg-emerald-800/50 rounded-lg border border-emerald-700">
