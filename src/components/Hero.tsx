@@ -15,17 +15,17 @@ const Hero = () => {
             Authentic Pakistani unstitched fabrics at wholesale rates. From elegant lawn to luxurious silk - discover traditional craftsmanship today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" variant='outline' className="bg-white text-emerald-800 hover:bg-emerald-800 hover:text-white text-lg px-8 py-4 border-white">
+            <Button size="lg" className="bg-white text-emerald-800 hover:bg-gray-100 text-lg px-8 py-4">
               Shop Collection
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-emerald-800 hover:bg-emerald-800 hover:text-white text-lg px-8 py-4">
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-emerald-800 text-lg px-8 py-4">
               Wholesale Inquiry
             </Button>
           </div>
           <div className="mt-12 flex items-center space-x-8 text-sm">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-              <span>Minimum Order: 25 pieces</span>
+              <span>Minimum Order: 50 pieces</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
