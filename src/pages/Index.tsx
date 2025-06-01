@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import Header from '../components/Header';
-import Hero from '../components/Hero';
+import CategorySection from '../components/CategorySection';
 import ProductGrid from '../components/ProductGrid';
 import Cart from '../components/Cart';
 import Footer from '../components/Footer';
@@ -47,7 +47,7 @@ const Index = () => {
         cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
         onCartClick={() => setIsCartOpen(true)}
       />
-      <Hero />
+      <CategorySection />
       <ProductGrid onAddToCart={addToCart} />
       <Footer />
       
