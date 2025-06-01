@@ -1,5 +1,5 @@
+
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingCart, Heart, Eye, ZoomIn } from 'lucide-react';
@@ -7,11 +7,6 @@ import { ShoppingCart, Heart, Eye, ZoomIn } from 'lucide-react';
 const ProductGrid = ({ onAddToCart, showAllCategories = false }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [likedProducts, setLikedProducts] = useState(new Set());
-  const location = useLocation();
-
-  // Determine how many products to show based on route
-  const isCollectionsPage = location.pathname === '/collections';
-  const maxProducts = isCollectionsPage ? 6 : 4;
 
   const products = [
     {
@@ -137,8 +132,8 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false }) => {
   ];
 
   const filteredProducts = selectedCategory === 'all' 
-    ? products.slice(0, maxProducts)
-    : products.filter(product => product.category === selectedCategory).slice(0, maxProducts);
+    ? products 
+    : products.filter(product => product.category === selectedCategory);
 
   const calculateDiscount = (original, current) => {
     return Math.round(((original - current) / original) * 100);
@@ -166,28 +161,21 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false }) => {
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Discover our authentic Pakistani fabric collection at unbeatable wholesale prices
         </p>
-        {!isCollectionsPage && (
-          <p className="text-sm text-emerald-600 mt-2">
-            Showing {maxProducts} featured products
-          </p>
-        )}
       </div>
 
-      {/* Category Filter - only show on collections page */}
-      {showAllCategories && (
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category.id}
-              variant={selectedCategory === category.id ? "default" : "outline"}
-              onClick={() => setSelectedCategory(category.id)}
-              className={selectedCategory === category.id ? "bg-emerald-600 hover:bg-emerald-700" : ""}
-            >
-              {category.name}
-            </Button>
-          ))}
-        </div>
-      )}
+      {/* Category Filter */}
+      <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {categories.map((category) => (
+          <Button
+            key={category.id}
+            variant={selectedCategory === category.id ? "default" : "outline"}
+            onClick={() => setSelectedCategory(category.id)}
+            className={selectedCategory === category.id ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+          >
+            {category.name}
+          </Button>
+        ))}
+      </div>
 
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
