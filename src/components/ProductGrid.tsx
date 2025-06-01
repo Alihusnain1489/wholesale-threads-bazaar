@@ -1,144 +1,138 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ShoppingCart, Heart, Eye, ZoomIn } from 'lucide-react';
+import { ShoppingCart, Heart, Eye, ZoomIn, Star, Share2 } from 'lucide-react';
 
 const ProductGrid = ({ onAddToCart, showAllCategories = false }) => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const [likedProducts, setLikedProducts] = useState(new Set());
-  const location = useLocation();
-
-  // Determine how many products to show based on route
-  const isCollectionsPage = location.pathname === '/collections';
-  const maxProducts = isCollectionsPage ? 6 : 4;
+  const [viewCounts, setViewCounts] = useState({});
 
   const products = [
     {
       id: 1,
-      name: "Premium Pakistani Lawn",
+      name: "Elegant Chikankari Unstitched Suit",
       category: "lawn",
-      price: 850,
-      originalPrice: 1200,
+      price: 2850,
+      pricePerMeter: 950,
+      originalPrice: 3200,
       image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=300&fit=crop",
-      colors: ["Blue", "Pink", "Green"],
-      description: "Soft, breathable Pakistani lawn fabric perfect for summer wear",
-      minOrder: 50,
+      colors: ["White", "Cream", "Light Pink"],
+      description: "Pure cotton chikankari work unstitched suit with dupatta",
+      minOrder: 1,
       pieces: 3,
       views: 245,
-      articleCode: "ABL001"
+      rating: 4.5,
+      reviews: 28,
+      articleCode: "CHK001",
+      fabric: "Pure Cotton",
+      work: "Chikankari Embroidery",
+      includes: ["Shirt", "Dupatta", "Trouser"]
     },
     {
       id: 2,
-      name: "Elegant Pakistani Chiffon",
+      name: "Premium Lawn Unstitched Collection",
       category: "chiffon",
       price: 1450,
+      pricePerMeter: 483,
       originalPrice: 1800,
       image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=300&fit=crop",
-      colors: ["Black", "Navy", "Maroon"],
-      description: "Luxurious Pakistani chiffon with intricate embroidery",
-      minOrder: 30,
+      colors: ["Blue", "Green", "Purple"],
+      description: "Digital printed lawn unstitched suit with chiffon dupatta",
+      minOrder: 1,
       pieces: 3,
       views: 189,
-      articleCode: "ABC002"
+      rating: 4.3,
+      reviews: 15,
+      articleCode: "LAW002",
+      fabric: "Lawn Cotton",
+      work: "Digital Print",
+      includes: ["Shirt", "Dupatta", "Trouser"]
     },
     {
       id: 3,
-      name: "Pure Pakistani Cotton",
+      name: "Luxury Silk Unstitched Ensemble",
       category: "cotton",
-      price: 750,
-      originalPrice: 950,
+      price: 4750,
+      pricePerMeter: 1583,
+      originalPrice: 5950,
       image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=300&fit=crop",
-      colors: ["White", "Cream", "Beige"],
-      description: "100% pure Pakistani cotton, perfect for everyday wear",
-      minOrder: 60,
+      colors: ["Maroon", "Navy", "Golden"],
+      description: "Pure silk unstitched suit with heavy embroidery work",
+      minOrder: 1,
       pieces: 3,
       views: 312,
-      articleCode: "APC003"
+      rating: 4.8,
+      reviews: 42,
+      articleCode: "SLK003",
+      fabric: "Pure Silk",
+      work: "Heavy Embroidery",
+      includes: ["Shirt", "Dupatta", "Trouser"]
     },
     {
       id: 4,
-      name: "Pakistani Silk Collection",
+      name: "Trendy Digital Print Suit",
       category: "silk",
       price: 2200,
+      pricePerMeter: 733,
       originalPrice: 2800,
       image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=300&fit=crop",
-      colors: ["Gold", "Silver", "Purple"],
-      description: "Premium Pakistani silk fabric with golden threads",
-      minOrder: 25,
+      colors: ["Multi", "Black", "White"],
+      description: "Contemporary digital print unstitched suit",
+      minOrder: 1,
       pieces: 3,
       views: 156,
-      articleCode: "APS004"
+      rating: 4.2,
+      reviews: 18,
+      articleCode: "DIG004",
+      fabric: "Khaddar",
+      work: "Digital Print",
+      includes: ["Shirt", "Dupatta", "Trouser"]
     },
     {
       id: 5,
-      name: "Printed Pakistani Lawn",
+      name: "Floral Paradise Unstitched",
       category: "lawn",
-      price: 920,
-      originalPrice: 1150,
+      price: 1920,
+      pricePerMeter: 640,
+      originalPrice: 2150,
       image: "https://images.unsplash.com/photo-1542272454315-7ad9ed67e614?w=400&h=300&fit=crop",
-      colors: ["Floral", "Geometric", "Abstract"],
-      description: "Vibrant printed Pakistani lawn collection",
-      minOrder: 45,
+      colors: ["Pink", "Yellow", "Green"],
+      description: "Beautiful floral printed unstitched suit collection",
+      minOrder: 1,
       pieces: 3,
       views: 278,
-      articleCode: "APL005"
+      rating: 4.6,
+      reviews: 35,
+      articleCode: "FLR005",
+      fabric: "Cotton Lawn",
+      work: "Floral Print",
+      includes: ["Shirt", "Dupatta", "Trouser"]
     },
     {
       id: 6,
-      name: "Luxury Pakistani Chiffon",
+      name: "Royal Chiffon Collection",
       category: "chiffon",
-      price: 1650,
-      originalPrice: 2100,
+      price: 3650,
+      pricePerMeter: 1217,
+      originalPrice: 4100,
       image: "https://images.unsplash.com/photo-1571513722275-4b8c3ba3dbb5?w=400&h=300&fit=crop",
-      colors: ["Rose Gold", "Champagne", "Pearl"],
-      description: "Premium Pakistani chiffon with pearl work",
-      minOrder: 20,
+      colors: ["Royal Blue", "Emerald", "Wine"],
+      description: "Luxury chiffon unstitched suit with stone work",
+      minOrder: 1,
       pieces: 3,
       views: 198,
-      articleCode: "ALC006"
-    },
-    {
-      id: 7,
-      name: "Khaddar Collection",
-      category: "cotton",
-      price: 680,
-      originalPrice: 850,
-      image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=300&fit=crop",
-      colors: ["Brown", "Rust", "Olive"],
-      description: "Traditional Pakistani khaddar fabric",
-      minOrder: 70,
-      pieces: 3,
-      views: 134,
-      articleCode: "AKC007"
-    },
-    {
-      id: 8,
-      name: "Banarasi Silk",
-      category: "silk",
-      price: 2800,
-      originalPrice: 3500,
-      image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=300&fit=crop",
-      colors: ["Deep Red", "Royal Blue", "Emerald"],
-      description: "Authentic Banarasi silk with zari work",
-      minOrder: 15,
-      pieces: 3,
-      views: 89,
-      articleCode: "ABS008"
+      rating: 4.7,
+      reviews: 22,
+      articleCode: "CHF006",
+      fabric: "Pure Chiffon",
+      work: "Stone Work",
+      includes: ["Shirt", "Dupatta", "Trouser"]
     }
   ];
 
-  const categories = [
-    { id: 'all', name: 'All Products' },
-    { id: 'lawn', name: 'Lawn' },
-    { id: 'chiffon', name: 'Chiffon' },
-    { id: 'cotton', name: 'Cotton' },
-    { id: 'silk', name: 'Silk' }
-  ];
-
-  const filteredProducts = selectedCategory === 'all' 
-    ? products.slice(0, maxProducts)
-    : products.filter(product => product.category === selectedCategory).slice(0, maxProducts);
+  const displayCount = showAllCategories ? 6 : 4;
+  const filteredProducts = products.slice(0, displayCount);
 
   const calculateDiscount = (original, current) => {
     return Math.round(((original - current) / original) * 100);
@@ -156,139 +150,120 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false }) => {
     });
   };
 
+  const incrementView = (productId) => {
+    setViewCounts(prev => ({
+      ...prev,
+      [productId]: (prev[productId] || 0) + 1
+    }));
+  };
+
+  const renderStars = (rating) => {
+    return [...Array(5)].map((_, i) => (
+      <Star 
+        key={i} 
+        className={`h-3 w-3 ${i < Math.floor(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} 
+      />
+    ));
+  };
+
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          {showAllCategories ? 'All Collections' : 'Pakistani Wholesale Collection'}
-        </h2>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Discover our authentic Pakistani fabric collection at unbeatable wholesale prices
-        </p>
-        {!isCollectionsPage && (
-          <p className="text-sm text-emerald-600 mt-2">
-            Showing {maxProducts} featured products
-          </p>
-        )}
-      </div>
-
-      {/* Category Filter - only show on collections page */}
-      {showAllCategories && (
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category.id}
-              variant={selectedCategory === category.id ? "default" : "outline"}
-              onClick={() => setSelectedCategory(category.id)}
-              className={selectedCategory === category.id ? "bg-emerald-600 hover:bg-emerald-700" : ""}
-            >
-              {category.name}
-            </Button>
-          ))}
-        </div>
-      )}
-
+    <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Products Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {filteredProducts.map((product) => (
-          <div key={product.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-emerald-100 group">
-            {/* Product Image */}
-            <div className="relative h-64 bg-gray-200 overflow-hidden">
-              <img 
-                src={product.image} 
-                alt={product.name}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-              
-              <div className="absolute top-4 left-4">
-                <Badge className="bg-red-500 text-white">
-                  {calculateDiscount(product.originalPrice, product.price)}% OFF
-                </Badge>
-              </div>
-              
-              <div className="absolute top-4 right-4 flex flex-col space-y-2">
-                <Button 
-                  size="sm" 
-                  variant="secondary" 
-                  className="p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  onClick={() => toggleLike(product.id)}
-                >
-                  <Heart className={`h-4 w-4 ${likedProducts.has(product.id) ? 'fill-red-500 text-red-500' : ''}`} />
-                </Button>
-                <Button 
-                  size="sm" 
-                  variant="secondary" 
-                  className="p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                  <Eye className="h-4 w-4" />
-                </Button>
-                <Button 
-                  size="sm" 
-                  variant="secondary" 
-                  className="p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                  <ZoomIn className="h-4 w-4" />
-                </Button>
+          <Link key={product.id} to={`/product/${product.id}`}>
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 group border h-full">
+              {/* Product Image */}
+              <div className="relative h-48 bg-gray-100 overflow-hidden">
+                <img 
+                  src={product.image} 
+                  alt={product.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{ transform: 'scale(1)' }}
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300" />
+                
+                {/* Badges */}
+                <div className="absolute top-2 left-2">
+                  <Badge className="bg-red-500 text-white text-xs">
+                    {calculateDiscount(product.originalPrice, product.price)}% OFF
+                  </Badge>
+                </div>
+                
+                {/* Action Buttons */}
+                <div className="absolute top-2 right-2 flex flex-col space-y-1">
+                  <Button 
+                    size="sm" 
+                    variant="secondary" 
+                    className="p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 hover:bg-white"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toggleLike(product.id);
+                    }}
+                  >
+                    <Heart className={`h-3 w-3 ${likedProducts.has(product.id) ? 'fill-red-500 text-red-500' : 'text-gray-600'}`} />
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="secondary" 
+                    className="p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 hover:bg-white"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      incrementView(product.id);
+                    }}
+                  >
+                    <Eye className="h-3 w-3 text-gray-600" />
+                  </Button>
+                </div>
               </div>
 
-              {/* Pieces Count */}
-              <div className="absolute bottom-4 left-4">
-                <Badge variant="outline" className="bg-white/90 text-emerald-700 border-emerald-200">
-                  {product.pieces} pieces
-                </Badge>
+              {/* Product Info */}
+              <div className="p-3">
+                <h3 className="text-sm font-medium text-gray-900 line-clamp-2 mb-2">{product.name}</h3>
+                
+                {/* Rating */}
+                <div className="flex items-center space-x-1 mb-2">
+                  <div className="flex items-center">
+                    {renderStars(product.rating)}
+                  </div>
+                  <span className="text-xs text-gray-600">({product.reviews})</span>
+                </div>
+
+                {/* Fabric and Work Details */}
+                <div className="space-y-1 mb-2">
+                  <div className="flex justify-between text-xs text-gray-600">
+                    <span>Fabric:</span>
+                    <span className="font-medium">{product.fabric}</span>
+                  </div>
+                  <div className="flex justify-between text-xs text-gray-600">
+                    <span>Work:</span>
+                    <span className="font-medium">{product.work}</span>
+                  </div>
+                </div>
+
+                {/* Pricing */}
+                <div className="space-y-1 mb-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-green-600">PKR {product.price.toLocaleString()}</span>
+                    <span className="text-xs text-gray-400 line-through">PKR {product.originalPrice.toLocaleString()}</span>
+                  </div>
+                  <div className="text-xs text-gray-600">PKR {product.pricePerMeter.toLocaleString()} per meter</div>
+                </div>
+
+                {/* Add to Cart Button */}
+                <Button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onAddToCart(product);
+                  }}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white text-sm py-2"
+                >
+                  <ShoppingCart className="h-3 w-3 mr-1" />
+                  Add to Cart
+                </Button>
               </div>
             </div>
-
-            {/* Product Info */}
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-semibold text-gray-900">{product.name}</h3>
-                <span className="text-xs text-gray-500">{product.articleCode}</span>
-              </div>
-              
-              <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
-              
-              {/* Stats */}
-              <div className="flex items-center justify-between mb-3 text-xs text-gray-500">
-                <span>{product.views} views</span>
-                <span>{likedProducts.has(product.id) ? (
-                  <span className="text-red-500">♥ Liked</span>
-                ) : (
-                  '♡'
-                )}</span>
-              </div>
-              
-              {/* Colors */}
-              <div className="mb-4">
-                <span className="text-xs text-gray-500">Colors: </span>
-                <span className="text-xs font-medium">{product.colors.join(", ")}</span>
-              </div>
-
-              {/* Pricing */}
-              <div className="flex items-center space-x-2 mb-4">
-                <span className="text-xl font-bold text-emerald-600">₹{product.price}</span>
-                <span className="text-sm text-gray-400 line-through">₹{product.originalPrice}</span>
-              </div>
-
-              {/* Minimum Order */}
-              <div className="mb-4">
-                <Badge variant="outline" className="text-xs border-emerald-200 text-emerald-700">
-                  Min Order: {product.minOrder} pieces
-                </Badge>
-              </div>
-
-              {/* Add to Cart Button */}
-              <Button 
-                onClick={() => onAddToCart(product)}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white transform hover:scale-105 transition-all duration-200"
-              >
-                <ShoppingCart className="h-4 w-4 mr-2" />
-                Add to Cart
-              </Button>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

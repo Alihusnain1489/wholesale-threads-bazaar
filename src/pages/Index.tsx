@@ -1,15 +1,16 @@
-
 import { useState } from 'react';
 import Header from '../components/Header';
-import Hero from '../components/Hero';
+import CategorySection from '../components/CategorySection';
 import ProductGrid from '../components/ProductGrid';
 import Cart from '../components/Cart';
 import Footer from '../components/Footer';
 import FreeDeliveryPopup from '../components/FreeDeliveryPopup';
+import LoadingScreen from '../components/LoadingScreen';
 
 const Index = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const addToCart = (product) => {
     setCartItems(prev => {
@@ -41,13 +42,17 @@ const Index = () => {
     );
   };
 
+  if (isLoading) {
+    return <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header 
         cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
         onCartClick={() => setIsCartOpen(true)}
       />
-      <Hero />
+      <CategorySection />
       <ProductGrid onAddToCart={addToCart} />
       <Footer />
       

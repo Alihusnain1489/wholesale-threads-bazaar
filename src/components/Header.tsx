@@ -1,62 +1,124 @@
-import { ShoppingBag, Menu, Search } from 'lucide-react';
+
+import { ShoppingBag, Menu, Search, User, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { MouseEvent } from 'react';
 
-interface HeaderProps {
-  cartItemsCount: number;
-  onCartClick: () => void;
-}
-
-const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
+const Header = ({ cartItemsCount, onCartClick }) => {
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50 border-b-2 border-emerald-500">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Left spacer for mobile menu */}
-          <div className="flex items-center md:hidden">
-            <Button variant="ghost" size="sm">
-              <Menu className="h-5 w-5" />
-            </Button>
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
+      {/* Top Navigation Bar */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-10 text-sm">
+            <div className="flex items-center space-x-6">
+              <span className="text-gray-600">📞 Customer Service</span>
+              <span className="hidden md:inline text-gray-600">📍 Track Order</span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <span className="text-gray-600">🚚 Free Delivery on Rs3000+</span>
+              <span className="hidden md:inline text-gray-600">💰 Best Wholesale Rates</span>
+            </div>
           </div>
+        </div>
+      </div>
 
-          {/* Centered Logo */}
-          <div className="flex items-center justify-center flex-1">
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">AB</span>
-              </div>
-              <h1 className="text-2xl font-bold text-emerald-700 hover:text-emerald-800 transition-colors">
-                Abid Bhai Store
-              </h1>
-            </Link>
+      {/* Main Header */}
+      <div className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Left Navigation */}
+            <nav className="hidden lg:flex space-x-8">
+      
+              <Link to="/collections" className="text-gray-700 hover:text-green-600 font-medium">
+                LOOKBOOK
+              </Link>
+              <a href="#store" className="text-gray-700 hover:text-green-600 font-medium">
+                STORE
+              </a>
+            </nav>
+
+            {/* Logo */}
+            <div className="flex items-center">
+              <Link to="/">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-green-500 rounded text-white flex items-center justify-center font-bold">
+                    AB
+                  </div>
+                  <span className="text-2xl font-bold text-green-600">Abid Bhai Store</span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Right side */}
+            <div className="flex items-center space-x-4">
+              <Button variant="ghost" size="sm" className="hidden md:flex">
+                <Search className="h-5 w-5" />
+              </Button>
+              
+              <Button variant="ghost" size="sm">
+                <Heart className="h-5 w-5" />
+              </Button>
+
+              <Button variant="ghost" size="sm">
+                <User className="h-5 w-5" />
+              </Button>
+              
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={onCartClick}
+                className="relative"
+              >
+                <ShoppingBag className="h-5 w-5" />
+                {cartItemsCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                    {cartItemsCount}
+                  </span>
+                )}
+              </Button>
+
+              <span className="hidden md:inline text-sm font-medium">₹ PKR</span>
+
+              <Button variant="ghost" size="sm" className="md:hidden">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
+        </div>
+      </div>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex space-x-8">
-
+      {/* Secondary Navigation */}
+      <div className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex items-center justify-center space-x-8 h-12 overflow-x-auto">
+            <a href="#summer-sale" className="text-red-600 font-medium whitespace-nowrap hover:text-red-700">
+              Great Summer Sale
+            </a>
+            <a href="#eid-edit" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
+              Eid Edit
+            </a>
+            <a href="#new-arrivals" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
+              New Arrivals
+            </a>
+            <a href="#women" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
+              Women
+            </a>
+            <a href="#lawn" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
+              Lawn
+            </a>
+            <a href="#chiffon" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
+              Chiffon
+            </a>
+            <a href="#cotton" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
+              Cotton
+            </a>
+            <a href="#silk" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
+              Silk
+            </a>
+            <a href="#fragrances" className="text-gray-700 font-medium whitespace-nowrap hover:text-green-600">
+              Fragrances
+            </a>
           </nav>
-
-          {/* Right side */}
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="hidden md:flex">
-              <Search className="h-5 w-5" />
-            </Button>
-            
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={onCartClick}
-              className="relative"
-            >
-              <ShoppingBag className="h-5 w-5" />
-              {cartItemsCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartItemsCount}
-                </span>
-              )}
-            </Button>
-          </div>
         </div>
       </div>
     </header>
@@ -64,9 +126,3 @@ const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
 };
 
 export default Header;
-// This function is not needed here because onCartClick is passed as a prop to Header.
-// If you want a default implementation, you could do:
-
-// function onCartClick(event: MouseEvent<HTMLButtonElement, MouseEvent>): void {
-//   event.preventDefault();
-// }
