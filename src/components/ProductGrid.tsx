@@ -12,7 +12,7 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false, category, filter,
       image: "Lawn11.jpg",
       category: "lawn",
       isNew: true,
-      isSale: false,
+      isSale: true,
       isBestseller: true
     },
     {
@@ -21,9 +21,9 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false, category, filter,
       price: 3200,
       image: "chiphone22.jpeg",
       category: "chiffon",
-      isNew: false,
+      isNew: true,
       isSale: true,
-      isBestseller: false
+      isBestseller: true
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false, category, filter,
       image: "silk11.webp",
       category: "silk",
       isNew: true,
-      isSale: false,
+      isSale: true,
       isBestseller: true
     },
     {
@@ -41,9 +41,9 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false, category, filter,
       price: 1800,
       image: "cambridge1.jpg",
       category: "cambric",
-      isNew: false,
+      isNew: true,
       isSale: true,
-      isBestseller: false
+      isBestseller: true
     },
     {
       id: 5,
@@ -52,7 +52,7 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false, category, filter,
       image: "Chiphone33.webp",
       category: "chiffon",
       isNew: true,
-      isSale: false,
+      isSale: true,
       isBestseller: false
     },
     {
@@ -61,8 +61,8 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false, category, filter,
       price: 3500,
       image: "chiphone11.webp",
       category: "lawn",
-      isNew: false,
-      isSale: false,
+      isNew: true,
+      isSale: true,
       isBestseller: true
     },
     {
@@ -73,7 +73,7 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false, category, filter,
       category: "silk",
       isNew: true,
       isSale: true,
-      isBestseller: false
+      isBestseller: true
     },
     {
       id: 8,
@@ -81,10 +81,70 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false, category, filter,
       price: 2200,
       image: "lawn1.webp",
       category: "lawn",
-      isNew: false,
-      isSale: false,
+      isNew: true,
+      isSale: true,
       isBestseller: true
-    }
+    },
+    {
+      id: 9,
+      name: "Silk",
+      price: 4000,
+      image: "silk 2.webp",
+      category: "silk",
+      isNew: true,
+      isSale: true,
+      isBestseller: true
+    },
+    {
+      id: 10,
+      name: "Silk",
+      price: 4000,
+      image: "silk 3.webp",
+      category: "silk",
+      isNew: true,
+      isSale: true,
+      isBestseller: true
+    },
+    {
+      id: 11,
+      name: "Cambric Cotton",
+      price: 4400,
+      image: "cotton 4.webp",
+      category: "cambric",
+      isNew: true,
+      isSale: true,
+      isBestseller: true
+    },
+    {
+      id: 12,
+      name: "Cambric Smooth ",
+      price: 4000,
+      image: "cotton 3.webp",
+      category: "cambric",
+      isNew: false,
+      isSale: true,
+      isBestseller: true
+    },
+    {
+      id: 13,
+      name: "Chiffon ",
+      price: 4000,
+      image: "cotton 2.webp",
+      category: "chiffon",
+      isNew: false,
+      isSale: true,
+      isBestseller: true
+    },
+    {
+      id: 14,
+      name: "Imperial Lawn",
+      price: 3200,
+      image: "lawn2.webp",
+      category: "lawn",
+      isNew: false,
+      isSale: true,
+      isBestseller: true
+    },
   ]);
 
   const [filteredProducts, setFilteredProducts] = useState(products);
@@ -110,7 +170,7 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false, category, filter,
           filtered = filtered.filter(product => product.isBestseller);
           break;
         case 'premium':
-          filtered = filtered.filter(product => product.price > 3000);
+          filtered = filtered.filter(product => product.price > 1000);
           break;
       }
     }
@@ -126,7 +186,7 @@ const ProductGrid = ({ onAddToCart, showAllCategories = false, category, filter,
     setFilteredProducts(filtered);
   }, [products, category, filter, searchQuery]);
 
-  const displayProducts = showAllCategories ? filteredProducts.slice(0, 6) : filteredProducts.slice(0, 4);
+  const displayProducts = showAllCategories ? filteredProducts.slice(0, 12) : filteredProducts.slice(0, 6);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
