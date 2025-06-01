@@ -25,10 +25,10 @@ const ProductDetail = () => {
     color: "Green",
     description: "Unstitched 3-Piece Printed Lawn Suit With Lawn Dupatta",
     images: [
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=800&fit=crop"
+      "cotton 2.webp",
+      "cotton 3.webp",
+      "lawn1.webp",
+      "lawn2.webp",
     ],
     fabric: "Lawn",
     pieces: 3,
