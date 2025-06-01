@@ -4,10 +4,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductGrid from '../components/ProductGrid';
 import Cart from '../components/Cart';
+import LoadingScreen from '../components/LoadingScreen';
 
 const Collections = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const addToCart = (product) => {
     setCartItems(prev => {
@@ -38,6 +40,10 @@ const Collections = () => {
       )
     );
   };
+
+  if (isLoading) {
+    return <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
