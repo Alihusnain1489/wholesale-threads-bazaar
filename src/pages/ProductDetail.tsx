@@ -59,7 +59,7 @@ const ProductDetail = () => {
             <div className="relative bg-gradient-to-br from-pink-100 to-orange-100 rounded-lg overflow-hidden">
               <Badge className="absolute top-4 left-4 bg-green-500 text-white z-10">NEW</Badge>
               <img 
-                src={product.images[selectedImage]} 
+                src={`/${product.images[selectedImage]}`} 
                 alt={product.name}
                 className="w-full h-96 sm:h-[500px] object-cover"
               />
@@ -76,7 +76,7 @@ const ProductDetail = () => {
                   }`}
                 >
                   <img 
-                    src={image} 
+                    src={`/${image}`} 
                     alt={`Product view ${index + 1}`}
                     className="w-full h-20 object-cover"
                   />
